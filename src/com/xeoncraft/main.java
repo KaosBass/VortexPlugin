@@ -1,10 +1,14 @@
 package com.xeoncraft;
 
 import com.xeoncraft.commands.*;
+import com.xeoncraft.events.PJoinEvent;
+import com.xeoncraft.events.PQuitEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -21,11 +25,20 @@ public class main extends JavaPlugin {
 
     public static ArrayList<String> onlineplayers = new ArrayList();
 
+    private PJoinEvent PJoinEvent = new PJoinEvent(this);
+    private PQuitEvent PQuitEvent = new PQuitEvent(this);
+
     public void onEnable() {
 
-        System.out.println("VortexPlugin has been activated! -created by Whiztech, Bedrockblaster, and Gl1tchMC");
+        System.out.println("TechCore has been activated! -created by Whiztech");
 
         registerFiles();
+        registerCommands();
+        registerEvents();
+
+        for (Player o : Bukkit.getOnlinePlayers()) {
+            onlineplayers.add(o.getName());
+        }
 
     }
 
@@ -35,18 +48,26 @@ public class main extends JavaPlugin {
         getCommand("playerinfo").setExecutor(new Playerinfo(this));
         getCommand("sethome").setExecutor(new Homes(this));
         getCommand("home").setExecutor(new Homes(this));
-        getCommand("speed").setExecutor(new Speed(this));
+        getCommand("faster").setExecutor(new Speed(this));
         getCommand("tphere").setExecutor(new TPhere(this));
+        getCommand("clearchat").setExecutor(new ClearChat(this));
+        getCommand("setgame").setExecutor(new SetGame(this));
+        getCommand("startgame").setExecutor(new SetGame(this));
     }
 
-    public void registerFiles()
-    {
+    public void registerEvents() {
+        PluginManager pm = Bukkit.getPluginManager();
+
+        pm.registerEvents(this.PJoinEvent, this);
+        pm.registerEvents(this.PQuitEvent, this);
+    }
+
+    public void registerFiles() {
         if (!playerstats.exists()) try { playerstats.createNewFile(); } catch (IOException e) { e.printStackTrace(); }
         if (!homepoints.exists()) try { homepoints.createNewFile(); } catch (IOException e) { e.printStackTrace(); }
     }
 
-    public static void setPlayerStats(Player p) throws IOException
-    {
+    public static void setPlayerStats(Player p) throws IOException {
         Damageable d = p;
         stats.set("Player." + p.getName() + ".Playername", p.getName());
         stats.set("Player." + p.getName() + ".Foodlevel", Integer.valueOf(p.getFoodLevel()));

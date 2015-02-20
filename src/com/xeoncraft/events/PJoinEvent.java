@@ -13,8 +13,7 @@ public class PJoinEvent implements Listener {
 
     public main plugin;
 
-    public PJoinEvent(main plugin)
-    {
+    public PJoinEvent(main plugin) {
         this.plugin = plugin;
     }
 
@@ -31,7 +30,7 @@ public class PJoinEvent implements Listener {
 
         String msg = "";
         if (ev.getPlayer().hasPlayedBefore())
-            msg = ChatColor.GREEN + "Join> ";
+            msg = ChatColor.GREEN + "Join> %player%";
         else {
             msg = ChatColor.BLUE + "First" + ChatColor.GREEN + " Join> ";
         }

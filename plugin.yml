@@ -23,7 +23,5 @@ commands:
      clearchat:
           description: Clear the global chat
           aliases: [cc]
-     msg:
-          description: Send a player a private message
-     speed:
+     faster:
           description: Sets your walk/fly speed

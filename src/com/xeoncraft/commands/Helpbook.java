@@ -28,7 +28,7 @@ public class Helpbook implements CommandExecutor {
                 Player player1 = (Player) sender;
                 ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
                 BookMeta bm = (BookMeta) book.getItemMeta();
-                bm.addPage(new String[]{ChatColor.AQUA + "Welcome to Vortex Ninja!" + ChatColor.GREEN + "\n This server is full of friendly people and fun games!"});
+                bm.addPage(new String[]{ChatColor.AQUA + "Welcome to Vortex Ninja!" + ChatColor.GREEN + "\n This server is full of friendly people and fun games!" + ChatColor.DARK_RED + "\n RULES:" + ChatColor.DARK_AQUA + "- Follow all rules and guidelines. \n - Do not use hacked clients. \n - Respect all staff and players. \n - Keep the chat family friendly."});
                 bm.addPage(new String[]{ChatColor.AQUA + "This should hopefully be a new page!" + ChatColor.GREEN + "\n If its not well \n shit..."});
                 bm.setAuthor(ChatColor.DARK_AQUA + "VortexNinjaStaff");
                 bm.setTitle(ChatColor.BLUE + "Help Book");

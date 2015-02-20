@@ -31,7 +31,7 @@ public class PQuitEvent implements Listener {
         }
 
         String msg = "";
-        msg = ChatColor.DARK_RED + "Quit> ";
+        msg = ChatColor.DARK_RED + "Quit> %player%";
         msg = msg.replace("%player%", ev.getPlayer().getName());
         msg = msg.replace("&", "§");
         ev.setQuitMessage(msg);

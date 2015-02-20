@@ -23,13 +23,13 @@ public class Speed implements CommandExecutor {
 
         if(sender instanceof Player);
 
-        if (cmd.getName().equalsIgnoreCase("speed")) {
-            if (p.hasPermission("vn.speed")) {
+        if (cmd.getName().equalsIgnoreCase("faster")) {
+            if (p.hasPermission("vn.faster")) {
                 float speed = 0.0F;
                 if (args.length >= 1) {
                     speed = Float.valueOf(Integer.parseInt(args[0])).floatValue();
                     if ((speed < 1.0F) || (speed > 10.0F)) {
-                        p.sendMessage(prefix + incusage + "/speed <1-10> [walk|fly]");
+                        p.sendMessage(incusage + "/speed <1-10> [walk|fly]");
                         return false;
                     }
                 }
@@ -45,13 +45,13 @@ public class Speed implements CommandExecutor {
                         p.setWalkSpeed(speed / 10.0F);
                         p.sendMessage(prefix + "Walk-Speed has been set to " + ChatColor.BLUE + speed);
                     } else {
-                        p.sendMessage(prefix + incusage + "/speed <1-10> [walk|fly]");
+                        p.sendMessage(incusage + "/faster <1-10> [walk|fly]");
                     }
                 } else {
-                    p.sendMessage(prefix + incusage + "/speed <1-10> [walk|fly]");
+                    p.sendMessage(incusage + "/faster <1-10> [walk|fly]");
                 }
             } else {
-                p.sendMessage(prefix + insufperms);
+                p.sendMessage(insufperms);
             }
 
         }
